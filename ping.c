@@ -112,23 +112,24 @@ int main(int argc, char **argv) {
 
 
 
-  printf("ping[%d] : round-trip time: %f ms", i, roundTripTime);
+  printf("\nping[%d] : round-trip time: %f ms", i, roundTripTime);
   totalTime += roundTripTime;
   }
 
   if(error == 1){
-    printf("There was an error in the modification of the array");
+    printf("\nThere was an error in the modification of the array");
   }
   else{
-    printf("no errors detected");
+    printf("\nno errors detected");
   }
   double avg = totalTime/nping;
-  printf("/ntime to send %d packets of %d bytes %f ms (%f avg per packet)", nping, arraysize, totalTime, avg); 
+  printf("\ntime to send %d packets of %d bytes %f ms (%f avg per packet)", nping, arraysize, totalTime, avg); 
 
 
 
-  printf("nping: %d arraysize: %d errors: %d ponghost: %s pongport: %s /n", nping, arraysize, errors, ponghost, pongport); 
+  printf("\nnping: %d arraysize: %d errors: %d ponghost: %s pongport: %s", nping, arraysize, errors, ponghost, pongport); 
 
-
+freeaddrinfo(servinfo);
+close(sockfd);
   return 0;
 }
