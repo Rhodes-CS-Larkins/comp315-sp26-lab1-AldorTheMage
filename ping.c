@@ -19,8 +19,8 @@
 int main(int argc, char **argv) {
   int ch, errors = 0;
   int nping = 1;                        // default packet count
-  char *ponghost = strdup("localhost"); // default host
-  char *pongport = strdup(PORTNO);      // default port
+  char *ponghost = "localhost"; // default host
+  char *pongport = PORTNO;      // default port
   int arraysize = 100;                  // default packet size
 
   while ((ch = getopt(argc, argv, "h:n:p:")) != -1) {
@@ -103,8 +103,8 @@ int main(int argc, char **argv) {
   }
   
       roundTripTime = get_wctime() - time1;
-      for(int i=0;i<arraysize;i++){
-        if((unsigned char)buffer[i] != 201){
+      for(int j =0;j<arraysize;j++){
+        if((unsigned char)buffer[j] != 201){
           error = 1;
         }
       }
