@@ -20,7 +20,7 @@
 int main(int argc, char **argv) {
   int ch;
   int nping = 1;                    // default packet count
-  char *pongport = strdup(PORTNO);  // default port
+  char *pongport = PORTNO;  // default port
 
   while ((ch = getopt(argc, argv, "h:n:p:")) != -1) {
     switch (ch) {
@@ -81,14 +81,14 @@ int main(int argc, char **argv) {
     perror("receiving error");
     return -1;
     }
-    printf("\npong[%d]: received packet from", nping);
+    printf("\npong[%d]: received packet from ", i);
     int arraysize = rv/sizeof(char);
 
     for(int j=0;j<arraysize;j++){
     buffer[j]++;
     }
     
-    if((sendto(sockfd, buffer, sizeof(buffer),0,p->ai_addr,p->ai_addrlen)) == -1){
+    if((sendto(sockfd, buffer, rv,0,(struct sockaddr *)&client_addr,addr_len)) == -1){
     perror("sending error");
     return -1;
     }
